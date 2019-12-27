@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_web"
+        android:title="Go to website"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_scoped_fragment"
+        android:title="To fragment with scoped ViewModel"/>
+    <item android:id="@+id/action_shared_fragment"
+        android:title="To fragment with shared ViewModel"/>
+
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/counterFragment">
+
+    <fragment
+        tools:layout=""
+        android:id="@+id/counterFragment"
+        android:name="me.mauricee.meui.demo.counter.CounterFragment"
+        android:label="CounterFragment">
+        <action
+            android:id="@+id/action_counterFragment_to_scopedCounterFragment"
+            app:destination="@id/scopedCounterFragment" />
+        <action
+            android:id="@+id/action_counterFragment_self"
+            app:destination="@id/counterFragment" />
+    </fragment>
+    <fragment
+        tools:layout=""
+        android:id="@+id/scopedCounterFragment"
+        android:name="me.mauricee.meui.demo.counter.ScopedCounterFragment"
+        android:label="ScopedCounterFragment">
+        <action
+            android:id="@+id/action_scopedCounterFragment_self"
+            app:destination="@id/scopedCounterFragment" />
+        <action
+            android:id="@+id/action_scopedCounterFragment_to_counterFragment"
+            app:destination="@id/counterFragment" />
+    </fragment>
+</navigation>
