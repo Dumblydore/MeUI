@@ -10,13 +10,15 @@ import me.mauricee.meui.demo.AppRouter
 import me.mauricee.meui.demo.MockService
 import me.mauricee.meui.demo.R
 import me.mauricee.meui.demo.route.AppRoute
+import me.mauricee.meui.ext.provideSharedViewModel
 import me.mauricee.meui.view.MeFragment
+import me.mauricee.meui.view.MeViewModel
 
 open class CounterFragment :
     MeFragment<TestContract.State, TestContract.Action, AppRoute>(R.layout.fragment_counter) {
 
     private val router: AppRouter by lazy { AppRouter(requireActivity()) }
-
+    override val viewModel: MeViewModel<TestContract.State, TestContract.Action, AppRoute> by provideSharedViewModel()
     override val presenter: CounterPresenter by lazy { CounterPresenter(MockService()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

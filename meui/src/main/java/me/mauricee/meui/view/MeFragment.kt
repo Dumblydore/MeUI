@@ -15,7 +15,7 @@ abstract class MeFragment<State, Action, Route>(@LayoutRes layoutId: Int = 0) :
 
     val subscriptions = CompositeDisposable()
     abstract val presenter: MePresenter<State, Action, Route>
-    open val viewModel by provideViewModel { MeViewModel<State, Action, Route>() }
+    open val viewModel: MeViewModel<State, Action, Route> by provideViewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

@@ -33,7 +33,7 @@ open class MeViewModel<State, Action, Route> : ViewModel(), MeView<Action, Route
 
     fun sendAction(action: Action) = _actions.onNext(action)
 
-    class Factory<T>(private val creator: () -> T) : ViewModelProvider.Factory {
+    class Factory<State, Action, Route>(private val creator: () -> MeViewModel<State, Action, Route>) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T = creator() as T
     }
 }
