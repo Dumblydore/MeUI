@@ -9,24 +9,15 @@
         tools:layout=""
         android:id="@+id/counterFragment"
         android:name="me.mauricee.meui.demo.counter.CounterFragment"
-        android:label="CounterFragment">
-        <action
-            android:id="@+id/action_counterFragment_to_scopedCounterFragment"
-            app:destination="@id/scopedCounterFragment" />
-        <action
-            android:id="@+id/action_counterFragment_self"
-            app:destination="@id/counterFragment" />
-    </fragment>
+        android:label="CounterFragment"/>
     <fragment
         tools:layout=""
         android:id="@+id/scopedCounterFragment"
         android:name="me.mauricee.meui.demo.counter.ScopedCounterFragment"
-        android:label="ScopedCounterFragment">
-        <action
-            android:id="@+id/action_scopedCounterFragment_self"
-            app:destination="@id/scopedCounterFragment" />
-        <action
-            android:id="@+id/action_scopedCounterFragment_to_counterFragment"
-            app:destination="@id/counterFragment" />
-    </fragment>
+        android:label="ScopedCounterFragment"/>
+    <fragment
+        android:id="@+id/masterDetailHostFragment"
+        android:name="me.mauricee.meui.demo.masterDetail.MasterDetailHostFragment"
+        android:label="MasterDetailHostFragment" />
+    <action android:id="@+id/action_global_masterDetailHostFragment" app:destination="@id/masterDetailHostFragment" /><action android:id="@+id/action_global_counterFragment" app:destination="@id/counterFragment"/><action android:id="@+id/action_global_scopedCounterFragment" app:destination="@id/scopedCounterFragment"/>
 </navigation>

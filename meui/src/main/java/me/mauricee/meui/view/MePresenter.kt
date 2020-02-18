@@ -17,12 +17,13 @@ abstract class MePresenter<State, Action, Route>(initialState: State,
         private set
 
     /**
-     *
+     x
      * @param previousState the first value that emits when the stream is subscribed to.
      * defaults to state
      *
      * */
-    fun attachView(view: MeView<Action, Route>, previousState: State? = null): Flowable<State> = view.actions.flatMap(::onAction)
+    fun attachView(view: MeView<Action, Route>, previousState: State? = null): Flowable<State> = view.actions
+        .flatMap { onAction(it, view) }
         .subscribeOn(subscribeThread)
         .startWith(onViewAttached(previousState ?: state, view))
         .distinctUntilChanged()
@@ -31,7 +32,8 @@ abstract class MePresenter<State, Action, Route>(initialState: State,
     protected open fun onViewAttached(previousState: State, view: MeView<Action, Route>): Flowable<State> =
         Flowable.just(previousState)
 
-    protected open fun onAction(action: Action): Flowable<State> = Flowable.empty()
+    //TODO maybe separate routes?
+    protected open fun onAction(action: Action, view: MeView<Action,Route>): Flowable<State> = Flowable.empty()
 
     protected fun stateless(action: () -> Unit): Flowable<State> = Completable.fromAction(action)
         .andThen(Flowable.empty())

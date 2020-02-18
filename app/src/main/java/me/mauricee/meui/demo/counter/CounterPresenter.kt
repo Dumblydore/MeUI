@@ -19,15 +19,19 @@ class CounterPresenter(private val mockService: MockService) :
             .flatMap { if (state.timer == 0) nextNumber() else Flowable.just(state.copy(timer = state.timer - 1)) }
             .startWith(previousState)
 
-    override fun onAction(action: TestContract.Action): Flowable<TestContract.State> =
+    override fun onAction(
+        action: TestContract.Action,
+        view: MeView<TestContract.Action, AppRoute>
+    ): Flowable<TestContract.State> =
         when (action) {
             TestContract.Action.NextNumber -> nextNumber()
         }
 
-    private fun nextNumber(): Flowable<TestContract.State> = mockService.randomNumber.toFlowable().map {
-        state.copy(
-            number = it,
-            timer = 5
-        )
-    }
+    private fun nextNumber(): Flowable<TestContract.State> =
+        mockService.randomNumber.toFlowable().map {
+            state.copy(
+                number = it,
+                timer = 5
+            )
+        }
 }

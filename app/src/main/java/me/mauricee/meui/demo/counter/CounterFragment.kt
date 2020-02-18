@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import kotlinx.android.synthetic.main.fragment_counter.view.*
 import me.mauricee.meui.demo.AppRouter
 import me.mauricee.meui.demo.MockService
@@ -48,12 +49,17 @@ open class CounterFragment :
             onRoute(AppRoute.OpenBrowser("https://www.google.com"))
             true
         }
-        R.id.action_scoped_fragment -> {
-            onRoute(AppRoute.Directions(CounterFragmentDirections.actionCounterFragmentToScopedCounterFragment()))
+        R.id.action_global_scopedCounterFragment -> {
+
+            onRoute(AppRoute.Directions(CounterFragmentDirections.actionGlobalScopedCounterFragment()))
             true
         }
-        R.id.action_shared_fragment -> {
-            onRoute(AppRoute.Directions(CounterFragmentDirections.actionCounterFragmentSelf()))
+        R.id.action_global_counterFragment -> {
+            onRoute(AppRoute.Directions(CounterFragmentDirections.actionGlobalCounterFragment()))
+            true
+        }
+        R.id.action_global_masterDetailHostFragment -> {
+            onRoute(AppRoute.Directions(CounterFragmentDirections.actionGlobalMasterDetailHostFragment()))
             true
         }
         else -> false
