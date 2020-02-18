@@ -1,18 +1,18 @@
 package me.mauricee.meui.ext
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import me.mauricee.meui.view.MeViewModel
 
 inline fun <reified State, Action, Route, reified T : MeViewModel<State, Action, Route>> Fragment.provideSharedViewModel(
     noinline creator: () -> MeViewModel<State, Action, Route> = { MeViewModel() },
     key: String = State::class.java.name
 ): Lazy<MeViewModel<State, Action, Route>> = lazy {
-    ViewModelProviders.of(requireActivity(), MeViewModel.Factory(creator))[key, T::class.java]
+    ViewModelProvider(requireActivity(), MeViewModel.Factory(creator))[key, T::class.java]
 }
 
 inline fun <State, Action, Route, reified T : MeViewModel<State, Action, Route>> Fragment.provideViewModel(
     noinline creator: () -> MeViewModel<State, Action, Route> = { MeViewModel() }
 ): Lazy<MeViewModel<State, Action, Route>> = lazy {
-    ViewModelProviders.of(this, MeViewModel.Factory(creator))[T::class.java]
+    ViewModelProvider(this, MeViewModel.Factory(creator))[T::class.java]
 }

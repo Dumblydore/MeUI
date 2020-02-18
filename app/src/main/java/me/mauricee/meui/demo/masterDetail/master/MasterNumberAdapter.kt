@@ -30,7 +30,7 @@ class MasterNumberAdapter :
     override fun getItemCount(): Int = numbers.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.masterDetail_item_number.text = "$position"
+        holder.itemView.masterDetail_item_number.text = "${numbers[position]}"
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
